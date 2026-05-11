@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function Player({initialName, symbol, isActive}) {
+export default function Player({initialName, symbol, isActive, onChangeName}) {
 
 let [isEditing, setIsEditing] = useState(false);
 let [playerName, setPlayerName] = useState(initialName);
@@ -11,11 +11,12 @@ function toggleEdit() {
 
 function saveNewInput() {
     setIsEditing(false);
+    onChangeName(symbol, playerName)
+    console.log(playerName);
 }
 
 function handleChange(event) {
     setPlayerName(event.target.value);
-    console.log(event.target.value);
 }
 
 let playerNameField = <span className="player-name">{playerName}</span>
